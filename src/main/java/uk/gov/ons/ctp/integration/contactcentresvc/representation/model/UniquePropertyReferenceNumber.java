@@ -1,23 +1,23 @@
 package uk.gov.ons.ctp.integration.contactcentresvc.representation.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
 @Data
-@AllArgsConstructor
 public class UniquePropertyReferenceNumber {
 
   public UniquePropertyReferenceNumber(String str) {
     if (!StringUtils.isBlank(str)) {
       try {
-        Long uprn = Long.parseLong(str);
-        if (uprn.longValue() >= Constants.UPRN_MIN && uprn.longValue() <= Constants.UPRN_MAX) {
-          this.value = uprn;
+        Long uprnLong = Long.parseLong(str);
+        if (uprnLong.longValue() >= Constants.UPRN_MIN
+            && uprnLong.longValue() <= Constants.UPRN_MAX) {
+          this.value = uprnLong;
+          this.uprn = str;
         } else {
-          throw new IllegalArgumentException("String '" + uprn + "' is not a valid UPRN");
+          throw new IllegalArgumentException("String '" + uprnLong + "' is not a valid UPRN");
         }
       } catch (NumberFormatException e) {
         throw new IllegalArgumentException();
@@ -25,6 +25,8 @@ public class UniquePropertyReferenceNumber {
     }
   }
 
-  @JsonProperty("uprn")
-  private long value;
+  @JsonIgnore private long value;
+
+  // Used as an alt to value so that jackson describes this as a string
+  private String uprn;
 }
