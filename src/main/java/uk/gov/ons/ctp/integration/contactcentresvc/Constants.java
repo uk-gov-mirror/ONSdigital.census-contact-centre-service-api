@@ -7,6 +7,8 @@ public interface Constants {
 
   public static final String PHONENUMBER_RE = "^[0-9]*$";
 
+  public static final String ADDRESS_RE = "[^ ']";
+
   public static final String POSTCODE_RE =
       "GIR[ ]?0AA|((AB|AL|B|BA|BB|BD|BH|BL|BN|BR|BS|BT|BX|CA|CB|CF|CH|CM|CO|CR|"
           + "CT|CV|CW|DA|DD|DE|DG|DH|DL|DN|DT|DY|E|EC|EH|EN|EX|FK|FY|G|GL|GY|GU|HA|"

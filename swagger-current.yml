@@ -1,14 +1,15 @@
 openapi: 3.0.0
 info:
   title: ONS Contact Centre API
-  version: "5.10.17-oas3"
+  version: "5.10.18-oas3"
   description: |
     Specification for the ONS Census Contact Centre / Assisted Digital service.
     This reflects the release candidate that will next be promoted into the integration environment.
 
     Version | Change
     ------- | ----------------------------------------------------------------
-    5.11.17 | postalfulfilment title, forename and surname max characters changes (20,35,35)
+    5.10.18 | addressQuery input minimum characters are now 5
+    5.10.17 | postalfulfilment title, forename and surname max characters changes (20,35,35)
     5.10.16 | title no longer mandatory for an individual fulfilment postal request
     5.10.15 | updated maximum values of offset and limit for /addresses/postcode endpoint
     5.10.14 | updated the EstabType enum
@@ -51,11 +52,12 @@ paths:
           required: true
           description: >-
             Specifies the address search string (e.g. 'Segensworth Road,
-            Titchfield, PO15 5RR').
+            Titchfield, PO15 5RR'). requires a minimum of 5 characters not including whitespaces and single quotes.
           schema:
             type: string
+            minimum: 5
             maximum: 250
-            default: 0
+            default: 5
         - in: query
           name: offset
           required: false
