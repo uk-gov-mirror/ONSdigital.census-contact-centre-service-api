@@ -3,14 +3,16 @@ package uk.gov.ons.ctp.integration.contactcentresvc.representation;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.ToString;
+import uk.gov.ons.ctp.integration.contactcentresvc.Constants;
 
 @Data
 @ToString
 public class AddressQueryRequestDTO {
   @NotBlank
-  @Min(5)
+  @Pattern(regexp = Constants.ADDRESS_RE)
   private String input;
 
   @Min(0)
